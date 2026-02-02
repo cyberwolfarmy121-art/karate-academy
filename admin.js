@@ -260,6 +260,7 @@ function showAdminPanel() {
     loadAwarded();
     loadSettings();
     loadPricing();
+    loadPaymentSessions();
 }
 
 // Logout
@@ -286,6 +287,8 @@ function showAdminSection(section) {
         loadSettings();
     } else if (section === 'pricing') {
         loadPricing();
+    } else if (section === 'payment') {
+        loadPaymentSessions();
     }
 }
 
@@ -1303,6 +1306,82 @@ function selectGalleryImage(imageData, imageName) {
     }
     
     closeImageGalleryModal();
+}
+
+// Payment Session Management
+
+// Get payment sessions from localStorage
+function getPaymentSessions() {
+    const stored = localStorage.getItem('karatePaymentSessions');
+    if (stored) {
+        return JSON.parse(stored);
+    }
+    // Default: all payment methods enabled
+    return {
+        upi: true,
+        banking: true,
+        check: true,
+        screenshot: true
+    };
+}
+
+// Save payment sessions to localStorage
+function savePaymentSessions(sessions) {
+    localStorage.setItem('karatePaymentSessions', JSON.stringify(sessions));
+}
+
+// Toggle a specific payment session
+function togglePaymentSession(method) {
+    const sessions = getPaymentSessions();
+    sessions[method] = !sessions[method];
+    savePaymentSessions(sessions);
+    
+    // Update status message
+    updatePaymentStatusMessage();
+}
+
+// Update the status message based on current sessions
+function updatePaymentStatusMessage() {
+    const sessions = getPaymentSessions();
+    const statusEl = document.getElementById('paymentStatusMessage');
+    
+    if (!statusEl) return;
+    
+    const enabledCount = Object.values(sessions).filter(v => v).length;
+    
+    if (enabledCount === 0) {
+        statusEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <span>All payment methods are currently disabled. Users will not be able to make payments.</span>';
+        statusEl.style.background = '#ffebee';
+        statusEl.style.color = '#c62828';
+    } else if (enabledCount === 4) {
+        statusEl.innerHTML = '<i class="fas fa-info-circle"></i> <span>All payment methods are enabled.</span>';
+        statusEl.style.background = '#e3f2fd';
+        statusEl.style.color = '#1976d2';
+    } else {
+        const disabledMethods = Object.entries(sessions)
+            .filter(([_, v]) => !v)
+            .map(([k, _]) => k.charAt(0).toUpperCase() + k.slice(1))
+            .join(', ');
+        statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> <span>Disabled payment methods: ${disabledMethods}. Users cannot use these methods.</span>`;
+        statusEl.style.background = '#fff3e0';
+        statusEl.style.color = '#ef6c00';
+    }
+}
+
+// Load payment sessions into the UI
+function loadPaymentSessions() {
+    const sessions = getPaymentSessions();
+    
+    // Set toggle states
+    Object.keys(sessions).forEach(method => {
+        const toggle = document.getElementById('toggle' + capitalizeFirst(method));
+        if (toggle) {
+            toggle.checked = sessions[method];
+        }
+    });
+    
+    // Update status message
+    updatePaymentStatusMessage();
 }
 
 console.log('Admin panel loaded successfully!');

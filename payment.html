@@ -588,7 +588,65 @@
                     navBrandText.textContent = settings.siteName;
                 }
             }
+            
+            // Check payment sessions and hide disabled methods
+            checkPaymentSessions();
         });
+        
+        // Check payment sessions
+        function checkPaymentSessions() {
+            const sessions = getPaymentSessions();
+            const disabledMethods = [];
+            
+            // Hide/disable payment methods that are turned off
+            if (!sessions.upi) {
+                const upiOption = document.querySelector('.payment-option input[value="upi"]');
+                if (upiOption) {
+                    upiOption.closest('.payment-option').style.display = 'none';
+                }
+                disabledMethods.push('UPI Payment');
+            }
+            
+            if (!sessions.banking) {
+                const bankingOption = document.querySelector('.payment-option input[value="banking"]');
+                if (bankingOption) {
+                    bankingOption.closest('.payment-option').style.display = 'none';
+                }
+                disabledMethods.push('Net Banking');
+            }
+            
+            if (!sessions.check) {
+                const checkOption = document.querySelector('.payment-option input[value="check"]');
+                if (checkOption) {
+                    checkOption.closest('.payment-option').style.display = 'none';
+                }
+                disabledMethods.push('Pay by Check');
+            }
+            
+            if (!sessions.screenshot) {
+                const screenshotOption = document.querySelector('.payment-option input[value="screenshot"]');
+                if (screenshotOption) {
+                    screenshotOption.closest('.payment-option').style.display = 'none';
+                }
+                disabledMethods.push('Upload Screenshot');
+            }
+            
+            // If all methods are disabled, show error message
+            if (disabledMethods.length === 4) {
+                document.querySelector('.payment-container').innerHTML = `
+                    <div class="payment-header">
+                        <h1><i class="fas fa-exclamation-triangle"></i> Payments Unavailable</h1>
+                        <p>Sorry, all payment methods are currently disabled.</p>
+                    </div>
+                    <div style="text-align: center; padding: 40px 20px; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+                        <i class="fas fa-credit-card" style="font-size: 4rem; color: #ccc; margin-bottom: 20px;"></i>
+                        <h2 style="color: #c62828; margin-bottom: 10px;">Payment System Disabled</h2>
+                        <p style="color: #666; margin-bottom: 20px;">Please contact the administrator to enable payment methods.</p>
+                        <a href="index.html" class="btn btn-primary">Back to Home</a>
+                    </div>
+                `;
+            }
+        }
 
         // Handle UPI app checkbox changes
         document.querySelectorAll('input[name="upiApp"]').forEach(checkbox => {
@@ -604,6 +662,13 @@
 
         // Handle payment method selection
         function selectPayment(method) {
+            // Double-check if payment method is enabled
+            const sessions = getPaymentSessions();
+            if (!sessions[method]) {
+                alert('This payment method is currently disabled. Please select another payment method.');
+                return;
+            }
+            
             selectedPaymentMethod = method;
             
             // Update UI
@@ -628,6 +693,13 @@
         function processPayment() {
             if (!selectedPaymentMethod) {
                 document.getElementById('paymentError').style.display = 'block';
+                return;
+            }
+            
+            // Double-check if payment method is enabled
+            const sessions = getPaymentSessions();
+            if (!sessions[selectedPaymentMethod]) {
+                alert('This payment method is currently disabled. Please select another payment method.');
                 return;
             }
 

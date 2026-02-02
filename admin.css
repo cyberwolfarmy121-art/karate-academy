@@ -913,3 +913,142 @@
     padding: 2rem;
     grid-column: 1 / -1;
 }
+
+/* Payment Sessions Styles */
+.payment-sessions-container {
+    max-width: 700px;
+}
+
+.payment-session-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+}
+
+.payment-session-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.payment-session-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.payment-session-icon.upi {
+    background: linear-gradient(135deg, #673ab7, #9c27b0);
+}
+
+.payment-session-icon.banking {
+    background: linear-gradient(135deg, #2196f3, #03a9f4);
+}
+
+.payment-session-icon.check {
+    background: linear-gradient(135deg, #ff9800, #ffc107);
+}
+
+.payment-session-icon.screenshot {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.payment-session-info {
+    flex: 1;
+}
+
+.payment-session-info h3 {
+    margin: 0 0 0.3rem 0;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.payment-session-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 30px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--primary-color);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+}
+
+.payment-session-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 8px;
+    color: #1976d2;
+    font-size: 0.9rem;
+}
+
+.payment-session-status i {
+    font-size: 1.2rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .payment-session-header {
+        flex-wrap: wrap;
+    }
+    
+    .payment-session-info {
+        width: calc(100% - 70px);
+    }
+    
+    .toggle-switch {
+        margin-left: auto;
+    }
+}

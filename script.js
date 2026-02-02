@@ -458,6 +458,21 @@ function getAwarded() {
     return stored ? JSON.parse(stored) : [];
 }
 
+// Get payment sessions from localStorage
+function getPaymentSessions() {
+    const stored = localStorage.getItem('karatePaymentSessions');
+    if (stored) {
+        return JSON.parse(stored);
+    }
+    // Default: all payment methods enabled
+    return {
+        upi: true,
+        banking: true,
+        check: true,
+        screenshot: true
+    };
+}
+
 // Load Masters gallery
 function loadMasters() {
     const masters = getMasters();

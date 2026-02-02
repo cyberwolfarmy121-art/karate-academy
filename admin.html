@@ -72,6 +72,9 @@
                 <button class="admin-tab" onclick="showAdminSection('pricing')">
                     <i class="fas fa-dollar-sign"></i> Pricing
                 </button>
+                <button class="admin-tab" onclick="showAdminSection('payment')">
+                    <i class="fas fa-credit-card"></i> Payment Sessions
+                </button>
                 <button class="admin-tab" onclick="window.location.href='image-gallery.html'">
                     <i class="fas fa-images"></i> Images
                 </button>
@@ -376,6 +379,85 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-save-pricing">Save Pricing Settings</button>
                     </form>
+                </div>
+            </div>
+
+            <!-- Payment Sessions Section -->
+            <div id="adminPayment" class="admin-section" style="display: none;">
+                <div class="admin-header">
+                    <h2>Payment Sessions</h2>
+                    <p>Control which payment methods are available for users</p>
+                </div>
+                
+                <div class="payment-sessions-container">
+                    <div class="payment-session-card">
+                        <div class="payment-session-header">
+                            <div class="payment-session-icon upi">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="payment-session-info">
+                                <h3>UPI Payment</h3>
+                                <p>Allow users to pay using Google Pay, PhonePe, Paytm or any UPI app</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggleUpi" onchange="togglePaymentSession('upi')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-session-card">
+                        <div class="payment-session-header">
+                            <div class="payment-session-icon banking">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="payment-session-info">
+                                <h3>Net Banking</h3>
+                                <p>Allow users to pay via direct bank transfer</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggleBanking" onchange="togglePaymentSession('banking')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-session-card">
+                        <div class="payment-session-header">
+                            <div class="payment-session-icon check">
+                                <i class="fas fa-money-check"></i>
+                            </div>
+                            <div class="payment-session-info">
+                                <h3>Pay by Check</h3>
+                                <p>Allow users to pay at the academy reception via check</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggleCheck" onchange="togglePaymentSession('check')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-session-card">
+                        <div class="payment-session-header">
+                            <div class="payment-session-icon screenshot" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="payment-session-info">
+                                <h3>Upload Screenshot</h3>
+                                <p>Allow users to upload payment screenshot from gallery</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggleScreenshot" onchange="togglePaymentSession('screenshot')">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-session-status" id="paymentStatusMessage">
+                        <i class="fas fa-info-circle"></i>
+                        <span>All payment methods are enabled by default. Toggle above to disable specific payment options.</span>
+                    </div>
                 </div>
             </div>
         </div>
