@@ -269,27 +269,34 @@ if (localStorage.getItem('adminLoggedIn') === 'true') {
     showAdminPanel();
 }
 
-// Login Form Handler
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorEl = document.getElementById('loginError');
-    
-    if (username === ADMIN_USER && password === ADMIN_PASS) {
-        localStorage.setItem('adminLoggedIn', 'true');
-        showAdminPanel();
-        errorEl.textContent = '';
-    } else {
-        errorEl.textContent = 'Invalid username or password';
+// Login Form Handler - wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('loginError');
+            
+            if (username === ADMIN_USER && password === ADMIN_PASS) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                showAdminPanel();
+                if (errorEl) errorEl.textContent = '';
+            } else {
+                if (errorEl) errorEl.textContent = 'Invalid username or password';
+            }
+        });
     }
 });
 
 // Show Admin Panel
 function showAdminPanel() {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
+    const loginSection = document.getElementById('loginSection');
+    const adminPanel = document.getElementById('adminPanel');
+    if (loginSection) loginSection.style.display = 'none';
+    if (adminPanel) adminPanel.style.display = 'block';
     loadVideos();
     loadMembers();
     loadMasters();
