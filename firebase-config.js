@@ -1,22 +1,22 @@
 // Firebase Configuration for Karate Academy
-// IMPORTANT: Replace with your own Firebase config from Firebase Console
-// Go to https://console.firebase.google.com/ to create a project
+// Configured with user's Firebase project
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "your-project.firebaseapp.com",
-    databaseURL: "https://your-project-default-rtdb.firebaseio.com",
-    projectId: "your-project",
-    storageBucket: "your-project.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAjozWqZds5uNNtNge6fBkFJjBLDF1HD0o",
+    authDomain: "karate-academy-13294.firebaseapp.com",
+    databaseURL: "https://karate-academy-13294-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "karate-academy-13294",
+    storageBucket: "karate-academy-13294.firebasestorage.app",
+    messagingSenderId: "237731746798",
+    appId: "1:237731746798:web:9ea6165440c96382e934ff",
+    measurementId: "G-X4Q6XPHKDD"
 };
 
-// Initialize Firebase (only if config is set and Firebase SDK is available)
+// Initialize Firebase
 let firebaseApp = null;
 let database = null;
 
-if (typeof firebase !== 'undefined' && firebaseConfig.apiKey !== "YOUR_API_KEY") {
+if (typeof firebase !== 'undefined') {
     try {
         firebaseApp = firebase.initializeApp(firebaseConfig);
         database = firebase.database();
@@ -24,11 +24,8 @@ if (typeof firebase !== 'undefined' && firebaseConfig.apiKey !== "YOUR_API_KEY")
     } catch (error) {
         console.warn('Firebase initialization error:', error);
     }
-} else if (firebaseConfig.apiKey === "YOUR_API_KEY") {
-    console.log('Firebase config not set. Cross-device sync disabled.');
-    console.log('To enable: 1) Create a Firebase project at https://console.firebase.google.com/');
-    console.log('2) Enable Realtime Database');
-    console.log('3) Replace YOUR_API_KEY in firebase-config.js with your actual config');
+} else {
+    console.warn('Firebase SDK not loaded. Cross-device sync disabled.');
 }
 
 // Get settings from localStorage
@@ -70,12 +67,10 @@ function getPaymentSessions() {
     return { upi: true, banking: true, check: true, screenshot: true };
 }
 
-// Firebase helper functions - defensive implementation
+// Firebase helper functions
 const firebaseSync = {
-    // Check if Firebase is available
     isAvailable: () => database !== null,
 
-    // Save data to Firebase
     save: async (path, data) => {
         if (database) {
             try {
@@ -90,7 +85,6 @@ const firebaseSync = {
         return false;
     },
 
-    // Listen for real-time updates
     listen: (path, callback) => {
         if (database) {
             const ref = database.ref(path);
@@ -102,7 +96,6 @@ const firebaseSync = {
         return () => {};
     },
 
-    // Push new data
     push: async (path, data) => {
         if (database) {
             try {
@@ -117,7 +110,6 @@ const firebaseSync = {
         return null;
     },
 
-    // Update existing data
     update: async (path, data) => {
         if (database) {
             try {
@@ -131,7 +123,6 @@ const firebaseSync = {
         return false;
     },
 
-    // Remove data
     remove: async (path) => {
         if (database) {
             try {
@@ -146,17 +137,16 @@ const firebaseSync = {
     }
 };
 
-// Auto-sync all karate data between localStorage and Firebase
+// Auto-sync all karate data
 const autoSync = {
     syncInterval: null,
     
     start: () => {
         if (!firebaseSync.isAvailable()) return;
         
-        // Sync to Firebase every 5 minutes
         autoSync.syncInterval = setInterval(() => {
             autoSync.saveAll();
-        }, 300000); // 5 minutes
+        }, 300000);
         
         console.log('Firebase auto-sync started');
     },
@@ -170,7 +160,6 @@ const autoSync = {
     saveAll: () => {
         if (!firebaseSync.isAvailable()) return;
         
-        // Save all data to Firebase
         const data = {
             videos: getVideos(),
             masters: getMasters(),
@@ -202,7 +191,6 @@ const autoSync = {
     }
 };
 
-// Start auto-sync when page loads
 if (typeof window !== 'undefined') {
     window.addEventListener('load', () => {
         if (firebaseSync.isAvailable()) {
