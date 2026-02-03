@@ -260,12 +260,31 @@ function saveAwarded(awarded) {
     }
 }
 
-// Admin credentials
+// Admin credentials (for reference only - login not required)
 const ADMIN_USER = 'KK';
 const ADMIN_PASS = 'KK';
 
-// Check if already logged in
+// Show admin panel directly without login
+function showAdminPanel() {
+    const loginSection = document.getElementById('loginSection');
+    const adminPanel = document.getElementById('adminPanel');
+    if (loginSection) loginSection.style.display = 'none';
+    if (adminPanel) adminPanel.style.display = 'block';
+    loadVideos();
+    loadMembers();
+    loadMasters();
+    loadChampions();
+    loadAwarded();
+    loadSettings();
+    loadPricing();
+    loadPaymentSessions();
+}
+
+// Check if already logged in OR just show admin panel directly
 if (localStorage.getItem('adminLoggedIn') === 'true') {
+    showAdminPanel();
+} else {
+    // Auto-login for development - remove this in production if you want login required
     showAdminPanel();
 }
 
