@@ -260,11 +260,11 @@ function saveAwarded(awarded) {
     }
 }
 
-// Admin credentials (for reference only - login not required)
+// Admin credentials
 const ADMIN_USER = 'KK';
 const ADMIN_PASS = 'KK';
 
-// Show admin panel directly without login
+// Show admin panel
 function showAdminPanel() {
     const loginSection = document.getElementById('loginSection');
     const adminPanel = document.getElementById('adminPanel');
@@ -280,12 +280,38 @@ function showAdminPanel() {
     loadPaymentSessions();
 }
 
-// Check if already logged in OR just show admin panel directly
+// Check if already logged in
 if (localStorage.getItem('adminLoggedIn') === 'true') {
     showAdminPanel();
-} else {
-    // Auto-login for development - remove this in production if you want login required
-    showAdminPanel();
+}
+
+// Inline login handler
+function handleLogin(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorEl = document.getElementById('loginError');
+    
+    if (username === ADMIN_USER && password === ADMIN_PASS) {
+        localStorage.setItem('adminLoggedIn', 'true');
+        showAdminPanel();
+        if (errorEl) errorEl.textContent = '';
+    } else {
+        if (errorEl) errorEl.textContent = 'Invalid username or password';
+    }
+}
+
+// Logout function
+function logout() {
+    localStorage.removeItem('adminLoggedIn');
+    const loginSection = document.getElementById('loginSection');
+    const adminPanel = document.getElementById('adminPanel');
+    const loginForm = document.getElementById('loginForm');
+    if (loginSection) loginSection.style.display = 'flex';
+    if (adminPanel) adminPanel.style.display = 'none';
+    if (loginForm) loginForm.reset();
+    location.reload();
 }
 
 // Setup login form immediately (script is at end of body)
