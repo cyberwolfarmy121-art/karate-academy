@@ -1,9 +1,0 @@
-# GitHub Pages Karate Site
-# Ignore unnecessary files
-*.log
-*.tmp
-*.bak
-.DS_Store
-Thumbs.db
-node_modules/
-.env
