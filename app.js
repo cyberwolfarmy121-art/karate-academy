@@ -986,7 +986,7 @@ function showAdminPanel() {
 function loginAdmin() {
     const password = document.getElementById('adminPassword').value;
     
-    if (password === 'karate') {
+    if (password === 'Max') {
         AppData.adminLoggedIn = true;
         document.getElementById('adminLogin').style.display = 'none';
         document.getElementById('adminDashboard').style.display = 'block';
