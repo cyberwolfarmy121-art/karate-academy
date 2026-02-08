@@ -3,425 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethical Hacker Club</title>
+    <title>Karate Academy - Master the Art of Karate</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header with Assistant Button -->
-    <header>
-        <div class="logo">
-            <i class="fas fa-shield-alt"></i>
-            <h1>Ethical Hacker Club</h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="karate-icon">🥋</span>
+            <span class="brand-text">Karate Academy</span>
         </div>
-        <div class="header-buttons">
-            <button class="assistant-btn" onclick="toggleAssistant()">
-                <i class="fas fa-robot"></i> Assistant
-            </button>
-            <button class="admin-login-btn" onclick="showAdminLogin()">
-                <i class="fas fa-user-shield"></i> Admin
-            </button>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#basics">Basics</a></li>
+            <li><a href="#kata">Kata</a></li>
+            <li><a href="#kumite">Kumite</a></li>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#champions">Champions</a></li>
+            <li><a href="#masters">Masters</a></li>
+            <li><a href="#join">Join Us</a></li>
+            <li><a href="#" onclick="showAdminPanel(); return false;" class="admin-link">Admin</a></li>
+        </ul>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </header>
+    </nav>
 
-    <!-- Home Page - Notice Board First -->
-    <main id="homePage">
-        <!-- Notice Board as Home Page -->
-        <section class="notice-board home-notice">
-            <div class="home-notice-header">
-                <h2><i class="fas fa-bullhorn"></i> Welcome to Ethical Hacker Club</h2>
-                <p>Stay updated with the latest announcements and news</p>
-            </div>
-            <h3 style="margin-bottom: 1rem; color: var(--primary-color);"><i class="fas fa-newspaper"></i> Latest Announcements</h3>
-            <div class="notices-container" id="noticesContainer">
-                <div class="notice-card">
-                    <h3>Welcome to Ethical Hacker Club!</h3>
-                    <p>Join us to learn cybersecurity, ethical hacking, and protect the digital world.</p>
-                    <span class="date">Feb 8, 2026</span>
-                </div>
-                <div class="notice-card">
-                    <h3>Next Workshop: Penetration Testing</h3>
-                    <p>Learn penetration testing techniques from industry experts.</p>
-                    <span class="date">Feb 15, 2026</span>
-                </div>
-                <div class="notice-card">
-                    <h3>CTF Competition Coming Soon!</h3>
-                    <p>Prepare for our upcoming Capture The Flag competition.</p>
-                    <span class="date">Feb 20, 2026</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Event Slots -->
-        <section class="events-section">
-            <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
-            <div class="events-container" id="eventsContainer">
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">15</span>
-                        <span class="month">FEB</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Penetration Testing Workshop</h3>
-                        <p>Learn practical penetration testing techniques</p>
-                        <p><i class="fas fa-clock"></i> 10:00 AM - 2:00 PM</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Online</p>
-                        <button class="register-btn" onclick="registerForEvent('Penetration Testing Workshop')">Register</button>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">20</span>
-                        <span class="month">FEB</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>CTF Competition</h3>
-                        <p>Test your skills in our CTF challenge</p>
-                        <p><i class="fas fa-clock"></i> 9:00 AM - 6:00 PM</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Online</p>
-                        <button class="register-btn" onclick="registerForEvent('CTF Competition')">Register</button>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">25</span>
-                        <span class="month">FEB</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Cybersecurity Fundamentals</h3>
-                        <p>Basic cybersecurity concepts for beginners</p>
-                        <p><i class="fas fa-clock"></i> 11:00 AM - 1:00 PM</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Online</p>
-                        <button class="register-btn" onclick="registerForEvent('Cybersecurity Fundamentals')">Register</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Join Us Section -->
-        <section class="join-section">
-            <h2><i class="fas fa-user-plus"></i> Join Our Community</h2>
-            <div class="join-content">
-                <p>Become a member of the Ethical Hacker Club and unlock exclusive benefits!</p>
-                <div class="benefits">
-                    <div class="benefit">
-                        <i class="fas fa-trophy"></i>
-                        <span>Earn Medals</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-star"></i>
-                        <span>Unlock Ranks</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-users"></i>
-                        <span>Network</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-book"></i>
-                        <span>Learn Skills</span>
-                    </div>
-                </div>
-                <button class="join-btn" onclick="showJoinForm()">Join Now</button>
-            </div>
-        </section>
-    </main>
-
-    <!-- Member Profile Section -->
-    <section id="memberProfile" class="profile-section hidden">
-        <div class="profile-header">
-            <div class="profile-icon" onclick="showEditProfile()">
-                <i class="fas fa-user-circle"></i>
-            </div>
-            <div class="profile-info">
-                <h2 id="memberName">Member Name</h2>
-                <span class="rank-badge" id="memberRank">Novice Hacker</span>
-            </div>
-            <button class="logout-btn" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </div>
-        <div class="profile-stats">
-            <div class="stat-card">
-                <i class="fas fa-medal"></i>
-                <h3>Medals</h3>
-                <p id="medalCount">0</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-star"></i>
-                <h3>XP Points</h3>
-                <p id="xpPoints">0</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-calendar-check"></i>
-                <h3>Events Joined</h3>
-                <p id="eventsJoined">0</p>
+    <!-- Homepage -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Master the Art of <span class="highlight">Karate</span></h1>
+            <p class="hero-subtitle">Begin your journey to become a karate master</p>
+            <div class="cta-buttons">
+                <a href="#join" class="btn btn-primary">Start Training</a>
+                <a href="#basics" class="btn btn-secondary">Learn Basics</a>
             </div>
         </div>
-        <div class="medals-display">
-            <h3><i class="fas fa-trophy"></i> Your Medals</h3>
-            <div class="medals-grid" id="medalsGrid">
-                <div class="medal empty-medal">
-                    <i class="fas fa-medal"></i>
-                    <span>No medals yet</span>
+        <div class="martial-arts-animation">
+            <div class="karate-figure">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+                <div class="leg left"></div>
+                <div class="leg right"></div>
+                <div class="belt"></div>
+            </div>
+            <div class="kick-effect"></div>
+        </div>
+    </section>
+
+    <!-- Basics Section -->
+    <section id="basics" class="section">
+        <div class="container">
+            <h2 class="section-title">Karate Basics</h2>
+            <p class="section-subtitle">Master the fundamental techniques of karate</p>
+        <div class="video-grid" id="basicsVideos"></div>
+        </div>
+    </section>
+
+    <!-- Kata Section -->
+    <section id="kata" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Kata - Forms</h2>
+            <p class="section-subtitle">Learn traditional kata forms</p>
+            <div class="video-grid" id="kataVideos"></div>
+        </div>
+    </section>
+
+    <!-- Kumite Section -->
+    <section id="kumite" class="section">
+        <div class="container">
+            <h2 class="section-title">Kumite - Sparring</h2>
+            <p class="section-subtitle">Learn the art of sparring and competition</p>
+            <div class="video-grid" id="kumiteVideos"></div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Membership</h2>
+            <p class="section-subtitle">Join our community and track your progress</p>
+            <div class="membership-container">
+                <div class="membership-info" id="memberInfo">
+                    <h3>Member Login</h3>
+                    <p>Enter your member ID to view your profile</p>
+                    <input type="text" id="memberIdInput" placeholder="Enter Member ID">
+                    <button class="btn btn-primary" onclick="loginMember()">View Profile</button>
+                </div>
+                <div class="membership-details" id="memberDetails" style="display: none;">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <span id="memberInitial">M</span>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="memberName">Member Name</h3>
+                            <span class="rank-badge" id="memberRank">White Belt</span>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <div class="info-item">
+                            <strong>Member ID:</strong>
+                            <span id="detailMemberId">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Join Date:</strong>
+                            <span id="memberJoinDate">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Status:</strong>
+                            <span id="memberStatus">Active</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Achievements:</strong>
+                            <div id="memberAchievements" class="achievements-list"></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="logoutMember()">Logout</button>
+                </div>
+                <div class="ranks-info">
+                    <h3>Karate Ranks</h3>
+                    <div class="rank-list">
+                        <div class="rank-item" data-rank="white">
+                            <span class="belt white"></span>
+                            <span>10th Kyu - White Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="yellow">
+                            <span class="belt yellow"></span>
+                            <span>9th Kyu - Yellow Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="orange">
+                            <span class="belt orange"></span>
+                            <span>8th Kyu - Orange Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="green">
+                            <span class="belt green"></span>
+                            <span>7th Kyu - Green Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="blue">
+                            <span class="belt blue"></span>
+                            <span>6th Kyu - Blue Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="purple">
+                            <span class="belt purple"></span>
+                            <span>5th Kyu - Purple Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="brown">
+                            <span class="belt brown"></span>
+                            <span>4th-1st Kyu - Brown Belt</span>
+                        </div>
+                        <div class="rank-item" data-rank="black">
+                            <span class="belt black"></span>
+                            <span>Dan Ranks - Black Belt</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Assistant Panel -->
-    <div id="assistantPanel" class="assistant-panel hidden">
-        <div class="assistant-header">
-            <h3><i class="fas fa-robot"></i> Ethical AI Assistant</h3>
-            <button class="close-btn" onclick="toggleAssistant()" aria-label="Close Assistant Panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="assistant-messages" id="assistantMessages">
-            <div class="message bot-message">
-                <p>Hello! I'm your Ethical Hacker Club assistant. How can I help you today?</p>
+    <!-- Champions Section -->
+    <section id="champions" class="section">
+        <div class="container">
+            <h2 class="section-title">Champions</h2>
+            <p class="section-subtitle">Celebrating our karate champions</p>
+            <div class="gallery-grid" id="championsGallery">
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🏆</span>
+                        <p>Champion 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🏆</span>
+                        <p>Champion 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🏆</span>
+                        <p>Champion 3</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🏆</span>
+                        <p>Champion 4</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="assistant-input">
-            <input type="text" id="userQuestion" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendQuestion()" aria-label="Send Question">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
+    </section>
 
-    <!-- Join Form Modal -->
-    <div id="joinModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" onclick="closeJoinForm()">&times;</span>
-            <h2><i class="fas fa-user-plus"></i> Join Ethical Hacker Club</h2>
-            <form id="joinForm" onsubmit="submitJoinForm(event)">
-                <div class="form-group">
-                    <label for="memberName">Full Name</label>
-                    <input type="text" id="memberNameInput" required placeholder="Enter your full name">
+    <!-- Masters Section -->
+    <section id="masters" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Masters</h2>
+            <p class="section-subtitle">Honoring our karate masters</p>
+            <div class="gallery-grid" id="mastersGallery">
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🥋</span>
+                        <p>Master 1</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="memberEmail">Email</label>
-                    <input type="email" id="memberEmail" required placeholder="Enter your email">
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🥋</span>
+                        <p>Master 2</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="memberPhone">Phone Number</label>
-                    <input type="tel" id="memberPhone" required placeholder="Enter your phone number">
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🥋</span>
+                        <p>Master 3</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="memberSkills">Skills/Interests</label>
-                    <textarea id="memberSkills" placeholder="Tell us about your hacking skills and interests..."></textarea>
+                <div class="gallery-item">
+                    <div class="image-slot">
+                        <span class="placeholder-icon">🥋</span>
+                        <p>Master 4</p>
+                    </div>
                 </div>
-                <button type="submit" class="submit-btn">Join Club</button>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Admin Login Modal -->
-    <div id="adminLoginModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" onclick="closeAdminLogin()">&times;</span>
-            <h2><i class="fas fa-user-shield"></i> Admin Login</h2>
-            <form id="adminLoginForm" onsubmit="adminLogin(event)">
-                <div class="form-group">
-                    <label for="adminPassword">Password</label>
-                    <input type="password" id="adminPassword" required placeholder="Enter admin password">
-                </div>
-                <button type="submit" class="submit-btn">Login</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="admin-panel hidden">
-        <div class="admin-header">
-            <h2><i class="fas fa-cogs"></i> Admin Panel</h2>
-            <button class="close-btn" onclick="closeAdminPanel()" aria-label="Close Admin Panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="admin-tabs">
-            <button class="tab-btn active" onclick="showAdminTab('addEvent')">Add Event</button>
-            <button class="tab-btn" onclick="showAdminTab('addNotice')">Add Notice</button>
-            <button class="tab-btn" onclick="showAdminTab('members')">Members</button>
-            <button class="tab-btn" onclick="showAdminTab('awards')">Awards</button>
-            <button class="tab-btn" onclick="showAdminTab('membership')">Membership</button>
-        </div>
-        <div class="admin-content">
-            <!-- Add Event Tab -->
-            <div id="addEventTab" class="admin-tab active">
-                <h3>Add New Event</h3>
-                <form id="addEventForm" onsubmit="addNewEvent(event)">
+    <!-- Join Us Section -->
+    <section id="join" class="section">
+        <div class="container">
+            <h2 class="section-title">Join Us</h2>
+            <p class="section-subtitle">Begin your karate journey today</p>
+            <div class="join-form-container">
+                <form id="joinForm" class="join-form">
                     <div class="form-group">
-                        <label>Event Title</label>
-                        <input type="text" id="eventTitle" required placeholder="Enter event title">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="Enter your full name">
                     </div>
                     <div class="form-group">
-                        <label>Event Description</label>
-                        <textarea id="eventDescription" required placeholder="Enter event description"></textarea>
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required placeholder="Enter your email">
                     </div>
                     <div class="form-group">
-                        <label for="eventDate">Date</label>
-                        <input type="date" id="eventDate" required title="Event Date">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="Enter your phone number">
                     </div>
                     <div class="form-group">
-                        <label for="eventTime">Time</label>
-                        <input type="time" id="eventTime" required title="Event Time">
-                    </div>
-                    <button type="submit" class="submit-btn">Add Event</button>
-                </form>
-            </div>
-            <!-- Add Notice Tab -->
-            <div id="addNoticeTab" class="admin-tab">
-                <h3>Add New Notice</h3>
-                <form id="addNoticeForm" onsubmit="addNewNotice(event)">
-                    <div class="form-group">
-                        <label>Notice Title</label>
-                        <input type="text" id="noticeTitle" required placeholder="Enter notice title">
+                        <label for="age">Age *</label>
+                        <input type="number" id="age" required min="5" max="100" placeholder="Enter your age">
                     </div>
                     <div class="form-group">
-                        <label>Notice Content</label>
-                        <textarea id="noticeContent" required placeholder="Enter notice content"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Notice</button>
-                </form>
-            </div>
-            <!-- Members Tab -->
-            <div id="membersTab" class="admin-tab">
-                <h3>Club Members</h3>
-                <div class="members-list" id="membersList"></div>
-            </div>
-            <!-- Awards Tab -->
-            <div id="awardsTab" class="admin-tab">
-                <h3>Award Medals</h3>
-                <form id="awardForm" onsubmit="awardMedal(event)">
-                    <div class="form-group">
-                        <label for="awardMember">Select Member</label>
-                        <select id="awardMember" required title="Select a member to award"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="medalType">Medal Type</label>
-                        <select id="medalType" required title="Select medal type">
-                            <option value="gold">Gold Medal</option>
-                            <option value="silver">Silver Medal</option>
-                            <option value="bronze">Bronze Medal</option>
-                            <option value="participation">Participation Medal</option>
+                        <label for="experience">Karate Experience</label>
+                        <select id="experience">
+                            <option value="beginner">Complete Beginner</option>
+                            <option value="some">Some Training</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Reason</label>
-                        <input type="text" id="awardReason" placeholder="Reason for award">
+                        <label for="goals">Training Goals</label>
+                        <textarea id="goals" placeholder="Tell us about your karate goals"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Award Medal</button>
+                    <button type="submit" class="btn btn-primary btn-full">Submit Application</button>
                 </form>
             </div>
-            <!-- Membership Tab -->
-            <div id="membershipTab" class="admin-tab">
-                <h3><i class="fas fa-crown"></i> Manage Membership</h3>
-                <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-color);">Upgrade members to premium status manually</p>
-                <form id="upgradeMemberForm" onsubmit="upgradeMember(event)">
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Admin Panel</h2>
+            <p class="section-subtitle">Manage the Karate Academy</p>
+            
+            <!-- Admin Login -->
+            <div id="adminLogin" class="admin-login">
+                <div class="login-box">
+                    <h3>Admin Login</h3>
                     <div class="form-group">
-                        <label for="upgradeMemberSelect">Select Member to Upgrade</label>
-                        <select id="upgradeMemberSelect" required title="Select a member to upgrade"></select>
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password">
                     </div>
-                    <div class="form-group">
-                        <label for="upgradeType">Upgrade Type</label>
-                        <select id="upgradeType" required title="Select upgrade type">
-                            <option value="premium">Premium Membership</option>
-                            <option value="lifetime">Lifetime Membership</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Notes (Optional)</label>
-                        <textarea id="upgradeNotes" placeholder="Add notes about this upgrade..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn"><i class="fas fa-crown"></i> Upgrade Member</button>
-                </form>
-                <div style="margin-top: 2rem;">
-                    <h4><i class="fas fa-users"></i> Current Premium Members</h4>
-                    <div id="premiumMembersList" class="members-list" style="margin-top: 1rem;"></div>
+                    <button class="btn btn-primary btn-full" onclick="loginAdmin()">Login</button>
+                    <p class="hint">Hint: Use password 1122</p>
                 </div>
-                <div style="margin-top: 2rem;">
-                    <h4><i class="fas fa-user-clock"></i> Pending Upgrades</h4>
-                    <div id="pendingUpgradesList" class="members-list" style="margin-top: 1rem;"></div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="showAdminTab('members')">Members</button>
+                    <button class="tab-btn" onclick="showAdminTab('champions')">Champions</button>
+                    <button class="tab-btn" onclick="showAdminTab('masters')">Masters</button>
+                    <button class="tab-btn" onclick="showAdminTab('videos')">Videos</button>
+                    <button class="tab-btn" onclick="showAdminTab('events')">Events</button>
+                    <button class="tab-btn logout" onclick="logoutAdmin()">Logout</button>
+                </div>
+
+                <!-- Members Tab -->
+                <div id="membersTab" class="admin-tab">
+                    <h3>Member Management</h3>
+                    <div class="members-list" id="membersList">
+                        <!-- Members will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Champions Tab -->
+                <div id="championsTab" class="admin-tab" style="display: none;">
+                    <h3>Manage Champions</h3>
+                    
+                    <!-- Add Form -->
+                    <div class="add-form">
+                        <div class="form-group">
+                            <label for="championName">Champion Name</label>
+                            <input type="text" id="championName" placeholder="Enter champion name">
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" id="championImageFile" accept="image/*" onchange="handleImageSelect(this, 'championImage')" style="display: none;">
+                            <button class="btn btn-secondary" onclick="document.getElementById('championImageFile').click()">Choose from Gallery</button>
+                            <input type="text" id="championImage" placeholder="Selected image URL" readonly style="margin-top: 10px;">
+                            <div id="championImagePreview" style="margin-top: 10px;"></div>
+                        </div>
+                        <button class="btn btn-primary" onclick="addChampion()">Add Champion</button>
+                    </div>
+                    <div class="gallery-grid" id="adminChampionsGallery">
+                        <!-- Champions will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Masters Tab -->
+                <div id="mastersTab" class="admin-tab" style="display: none;">
+                    <h3>Manage Masters</h3>
+                    
+                    <!-- Add Form -->
+                    <div class="add-form">
+                        <div class="form-group">
+                            <label for="masterName">Master Name</label>
+                            <input type="text" id="masterName" placeholder="Enter master name">
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" id="masterImageFile" accept="image/*" onchange="handleImageSelect(this, 'masterImage')" style="display: none;">
+                            <button class="btn btn-secondary" onclick="document.getElementById('masterImageFile').click()">Choose from Gallery</button>
+                            <input type="text" id="masterImage" placeholder="Selected image URL" readonly style="margin-top: 10px;">
+                            <div id="masterImagePreview" style="margin-top: 10px;"></div>
+                        </div>
+                        <button class="btn btn-primary" onclick="addMaster()">Add Master</button>
+                    </div>
+                    <div class="gallery-grid" id="adminMastersGallery">
+                        <!-- Masters will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Videos Tab -->
+                <div id="videosTab" class="admin-tab" style="display: none;">
+                    <h3>Manage Video Access by Belt Level</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">Set the minimum belt level required to access each video.</p>
+                    
+                    <div class="video-management">
+                        <h4>Basics Section</h4>
+                        <div id="basicsVideosConfig" class="video-config-list"></div>
+                        
+                        <h4 style="margin-top: 30px;">Kata Section</h4>
+                        <div id="kataVideosConfig" class="video-config-list"></div>
+                        
+                        <h4 style="margin-top: 30px;">Kumite Section</h4>
+                        <div id="kumiteVideosConfig" class="video-config-list"></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveVideoRequirements()" style="margin-top: 20px;">Save All Changes</button>
+                </div>
+
+                <!-- Events Tab -->
+                <div id="eventsTab" class="admin-tab" style="display: none;">
+                    <h3>Manage Events & Notices</h3>
+                    <div class="add-form">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" id="eventTitle" placeholder="Enter event title">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="date" id="eventDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <textarea id="eventDescription" placeholder="Enter event description"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="addEvent()">Add Event</button>
+                    </div>
+                    <div class="events-list" id="eventsList">
+                        <!-- Events will be loaded here -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Upgrade Modal -->
-    <div id="upgradeModal" class="modal hidden">
-        <div class="modal-content upgrade-modal">
-            <span class="close" onclick="closeUpgradeModal()">&times;</span>
-            <h2><i class="fas fa-rocket"></i> Upgrade to Premium</h2>
-            <p>Get access to advanced code generation features!</p>
-            <div class="payment-options">
-                <h3>Select Payment Method</h3>
-                <div class="payment-methods">
-                    <label class="payment-option">
-                        <input type="checkbox" name="payment" value="gpay">
-                        <i class="fab fa-google-pay"></i>
-                        <span>Google Pay</span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="checkbox" name="payment" value="phonepe">
-                        <i class="fab fa-phone"></i>
-                        <span>PhonePe</span>
-                    </label>
-                    <label class="payment-option">
-                        <input type="checkbox" name="payment" value="upi">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>Other UPI Apps</span>
-                    </label>
+    <!-- Video Player Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+            <h3 id="modalVideoTitle">Video Title</h3>
+            <div class="video-player">
+                <div id="videoPlayerPlaceholder" class="video-player-placeholder">
+                    <span class="play-icon">▶</span>
+                    <p>Video Player</p>
                 </div>
-                <div class="upi-details">
-                    <p><strong>UPI ID:</strong> <span id="upiId">9047424116@ybl</span></p>
-                    <button class="copy-btn" onclick="copyUPI()">
-                        <i class="fas fa-copy"></i> Copy
-                    </button>
-                </div>
-                <button class="submit-btn" onclick="confirmPayment()">Confirm Payment</button>
+                <iframe id="videoIframe" style="display: none;" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
             </div>
-        </div>
-    </div>
-
-    <!-- Payment Confirmation Modal -->
-    <div id="paymentConfirmModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" onclick="closePaymentConfirm()">&times;</span>
-            <h2><i class="fas fa-check-circle"></i> Payment Submitted</h2>
-            <p>Thank you for your payment! Please wait for admin approval.</p>
-            <p><i class="fas fa-clock"></i> We'll notify you once your payment is verified.</p>
-            <button class="submit-btn" onclick="closePaymentConfirm()">OK</button>
-        </div>
-    </div>
-
-    <!-- Registration Success Modal -->
-    <div id="registrationSuccessModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" onclick="closeRegistrationSuccess()">&times;</span>
-            <h2><i class="fas fa-check-circle"></i> Registration Successful!</h2>
-            <p>Welcome to the Ethical Hacker Club!</p>
-            <div id="newMemberProfile"></div>
-            <button class="submit-btn" onclick="viewProfile()">View Profile</button>
-        </div>
-    </div>
-
-    <!-- Event Registration Modal -->
-    <div id="eventRegModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" onclick="closeEventRegModal()">&times;</span>
-            <h2><i class="fas fa-calendar-check"></i> Event Registration</h2>
-            <p id="eventRegMessage"></p>
-            <button class="submit-btn" onclick="closeEventRegModal()">OK</button>
+            <p id="modalVideoDesc" class="modal-description"></p>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer>
-        <p><i class="fas fa-shield-alt"></i> Ethical Hacker Club - Protecting the Digital World</p>
-        <p>&copy; 2026 All Rights Reserved</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🥋 Karate Academy</h4>
+                    <p>Master the art of karate through disciplined training and dedication.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#basics">Basics</a></li>
+                        <li><a href="#kata">Kata</a></li>
+                        <li><a href="#kumite">Kumite</a></li>
+                        <li><a href="#join">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@karateacademy.com</p>
+                    <p>Phone: +1 234 567 890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Karate Academy. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Notification Container -->
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
 </body>
 </html>
